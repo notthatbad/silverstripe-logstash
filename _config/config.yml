@@ -1,0 +1,9 @@
+---
+Name: logstash
+Before:
+  - 'mysite/*'
+---
+LogstashAdapter:
+  Host: localhost
+  Port: 7644
+  Level: Debug
