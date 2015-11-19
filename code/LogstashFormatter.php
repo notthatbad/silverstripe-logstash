@@ -15,3 +15,4 @@ class LogstashFormatter implements Zend_Log_Formatter_Interface {
         return $string;
     }
 }
+

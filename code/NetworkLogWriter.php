@@ -37,10 +37,8 @@ class NetworkLogWriter extends Zend_Log_Writer_Abstract {
             $formatter = new LogstashFormatter();
             $this->setFormatter($formatter);
         }
-
         $formattedData = $this->_formatter->format($event);
         $socket = $this->createSocket();
-        var_dump($formattedData);
         if($socket !== false) {
             fwrite($socket, $formattedData);
             fflush($socket);
