@@ -2,18 +2,27 @@
 
 require_once THIRDPARTY_PATH . '/Zend/Log/Writer/Abstract.php';
 
-class TCPLogWriter extends Zend_Log_Writer_Abstract {
+class NetworkLogWriter extends Zend_Log_Writer_Abstract {
+
+    const UDP = "udp";
+    const TCP = "tcp";
 
     /**
      * @var ILogAdapter
      */
     protected $adapter = null;
+    /**
+     * @var string
+     */
+    protected $protocol;
 
     /**
      * @param ILogAdapter $adapter
+     * @param string $protocol
      */
-    public function __construct($adapter) {
+    public function __construct($adapter, $protocol) {
         $this->adapter = $adapter;
+        $this->protocol = $protocol;
     }
 
     /**
@@ -31,14 +40,14 @@ class TCPLogWriter extends Zend_Log_Writer_Abstract {
 
         $formattedData = $this->_formatter->format($event);
         $socket = $this->createSocket();
-
+        var_dump($formattedData);
         if($socket !== false) {
             fwrite($socket, $formattedData);
             fflush($socket);
             fclose($socket);
         } else {
             // report into local error logs, that the socket is not reachable from this host.
-            error_log("TCP socket for logging is not reachable");
+            error_log("{$this->protocol} socket for logging is not reachable");
         }
     }
 
@@ -46,7 +55,7 @@ class TCPLogWriter extends Zend_Log_Writer_Abstract {
      * @return resource
      */
     protected function createSocket() {
-        $fp = @fsockopen("tcp://{$this->adapter->host()}", $this->adapter->port());
+        $fp = @fsockopen("{$this->protocol}://{$this->adapter->host()}", $this->adapter->port());
         return $fp;
     }
 
@@ -57,6 +66,6 @@ class TCPLogWriter extends Zend_Log_Writer_Abstract {
      * @return Zend_Log_FactoryInterface
      */
     static public function factory($adapter) {
-        return new TCPLogWriter($adapter);
+        return new NetworkLogWriter($adapter, self::UDP);
     }
 }
