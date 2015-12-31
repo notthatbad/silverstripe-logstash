@@ -3,7 +3,8 @@
 /**
  * Interface ILogAdapter
  */
-interface ILogAdapter {
+interface ILogAdapter
+{
 
     /**
      * @return string

@@ -2,7 +2,8 @@
 
 require_once THIRDPARTY_PATH . '/Zend/Log/Writer/Abstract.php';
 
-class NetworkLogWriter extends Zend_Log_Writer_Abstract {
+class NetworkLogWriter extends Zend_Log_Writer_Abstract
+{
 
     const UDP = "udp";
     const TCP = "tcp";
@@ -20,7 +21,8 @@ class NetworkLogWriter extends Zend_Log_Writer_Abstract {
      * @param ILogAdapter $adapter
      * @param string $protocol
      */
-    public function __construct($adapter, $protocol) {
+    public function __construct($adapter, $protocol)
+    {
         $this->adapter = $adapter;
         $this->protocol = $protocol;
     }
@@ -31,15 +33,16 @@ class NetworkLogWriter extends Zend_Log_Writer_Abstract {
      * @param  array $event log data event
      * @return void
      */
-    protected function _write($event) {
+    protected function _write($event)
+    {
         // format data
-        if(!$this->_formatter) {
+        if (!$this->_formatter) {
             $formatter = new LogstashFormatter();
             $this->setFormatter($formatter);
         }
         $formattedData = $this->_formatter->format($event);
         $socket = $this->createSocket();
-        if($socket !== false) {
+        if ($socket !== false) {
             fwrite($socket, $formattedData);
             fflush($socket);
             fclose($socket);
@@ -52,7 +55,8 @@ class NetworkLogWriter extends Zend_Log_Writer_Abstract {
     /**
      * @return resource
      */
-    protected function createSocket() {
+    protected function createSocket()
+    {
         $fp = @fsockopen("{$this->protocol}://{$this->adapter->host()}", $this->adapter->port());
         return $fp;
     }
@@ -63,7 +67,8 @@ class NetworkLogWriter extends Zend_Log_Writer_Abstract {
      * @param  ILogAdapter $adapter
      * @return Zend_Log_FactoryInterface
      */
-    static public function factory($adapter) {
+    public static function factory($adapter)
+    {
         return new NetworkLogWriter($adapter, self::UDP);
     }
 }
