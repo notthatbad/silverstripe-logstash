@@ -3,19 +3,22 @@
 /**
  * Class LogstashAdapter
  */
-class LogstashAdapter implements ILogAdapter {
+class LogstashAdapter implements ILogAdapter
+{
 
     /**
      * @return string
      */
-    public function host() {
+    public function host()
+    {
         return Config::inst()->get('LogstashAdapter', 'Host');
     }
 
     /**
      * @return int
      */
-    public function port() {
+    public function port()
+    {
         return Config::inst()->get('LogstashAdapter', 'Port');
     }
 }
