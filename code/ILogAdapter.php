@@ -2,6 +2,7 @@
 
 /**
  * Interface ILogAdapter
+ * @author Christian Blank <c.blank@notthatbad.net>
  */
 interface ILogAdapter {
 

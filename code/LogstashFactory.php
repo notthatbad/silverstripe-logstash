@@ -1,6 +1,10 @@
 <?php
 
 
+/**
+ * Class LogstashFactory
+ * @author Christian Blank <c.blank@notthatbad.net>
+ */
 class LogstashFactory {
     /**
      * Construct a Zend_Log writer

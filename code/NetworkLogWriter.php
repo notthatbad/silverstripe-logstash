@@ -2,6 +2,10 @@
 
 require_once THIRDPARTY_PATH . '/Zend/Log/Writer/Abstract.php';
 
+/**
+ * Class NetworkLogWriter
+ * @author Christian Blank <c.blank@notthatbad.net>
+ */
 class NetworkLogWriter extends Zend_Log_Writer_Abstract {
 
     const UDP = "udp";

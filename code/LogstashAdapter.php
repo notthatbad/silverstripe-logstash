@@ -2,6 +2,7 @@
 
 /**
  * Class LogstashAdapter
+ * @author Christian Blank <c.blank@notthatbad.net>
  */
 class LogstashAdapter implements ILogAdapter {
 

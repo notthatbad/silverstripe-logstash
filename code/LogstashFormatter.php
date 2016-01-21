@@ -2,6 +2,10 @@
 
 require_once THIRDPARTY_PATH . '/Zend/Log/Formatter/Interface.php';
 
+/**
+ * Class LogstashFormatter
+ * @author Christian Blank <c.blank@notthatbad.net>
+ */
 class LogstashFormatter implements Zend_Log_Formatter_Interface {
 
     /**
