@@ -19,5 +19,8 @@
             "name": "Christian Blank",
             "email": "christian.blank@haw-hamburg.de"
         }
-    ]
+    ],
+    "support": {
+        "issues": "https://github.com/notthatbad/silverstripe-logstash/issues"
+    }
 }
